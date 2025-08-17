@@ -38,8 +38,7 @@
 					  </div>
 					<nav>
 						<ul>
-							<li><a href="#intro">Intro</a></li>
-							<li><a href="#portfolio">Projects</a></li>
+							<li><a href="#projects">Projects</a></li>
 							<li><a href="#about">About Me</a></li>
 							<li><a href="#skills">Skills</a></li>
 							<li><a href="#contact">Contact</a></li>
@@ -107,42 +106,37 @@
 				<!-- Main -->
 					<div id="main">
 
-						<!-- Intro -->
-						<article id="intro">
-							<h2 class="major">Intro</h2>
-							<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-							<p>Hi, I'm Edgar Alaniz, a mechanical engineer with expertise in mechanical design and engineering, product development and prototyping, industrial automation and robotics, and manufacturing process optimization. I'm also proficient in microcontroller programming, particularly using platforms such as Arduino, to develop complex systems that combine mechanical, electrical, and software components. I have experience with CAD software such as SolidWorks and AutoCAD, as well as CNC routers, laser cutters, and 3D printers for prototyping and manufacturing.</p>
-							<p>My advanced knowledge of mechanical design principles and techniques, combined with my skills in microcontroller programming, allows me to create innovative and efficient solutions for complex problems in various industries. In addition, I'm skilled in programming languages such as MATLAB for data analysis and automation.</p>	
-							<p>Thanks for stopping by! If you want to see some of my work, check out my <a href="#portfolio">portfolio</a>.</p>
-						</article>
-
 						<!-- Work -->
-						<article id="portfolio">
-							<h2 class="major">Portfolio</h2>
-							<p>Here are some of my recent projects:</p>
-						  
+						<article id="projects">
+							<h2 class="major">Projects</h2>
 							<div class="project-details">
+						  
 							  <div class="project">
-								<h3>Project 1</h3>
-								<img src="images/project1.jpg" alt="Project 1">
-								<p>A brief description of the project, including its purpose, scope, and my role in its development.</p>
-								<p>Technologies used: Arduino, SolidWorks, 3D Printing</p>
-								<a href="ProjectsFolder/project01.html">View Project Details</a>
+								<img class="thumb" src="images/project-rocket-swing.jpg" alt="Rocket Swing" loading="lazy" decoding="async">
+								<h3>Rocket Swing</h3>
+								<p>A backyard swing powered by actual rocket motors, built for a Mark Rober video.</p>
+								<ul>
+								  <li>Simulated forces, thrust, and pendulum motion</li>
+								  <li>Custom welded frame & motor mounts</li>
+								  <li>Safety-tested for high g-forces</li>
+								</ul>
+								<p><a class="cta" href="#" target="_blank" rel="noopener">Details</a></p>
 							  </div>
 						  
 							  <div class="project">
-								<h3>Project 2</h3>
-								<img src="images/project2.jpg" alt="Project 2">
-								<p>A brief description of the project, including its purpose, scope, and my role in its development.</p>
-								<p>Technologies used: Raspberry Pi, SolidWorks, CNC Machining</p>
-								<a href="#project2.html">View Project Details</a>
+								<img class="thumb" src="images/project-ro-demo.jpg" alt="Transparent RO Demo" loading="lazy" decoding="async">
+								<h3>Transparent RO Demo</h3>
+								<p>A clear reverse osmosis system for a water-purification video.</p>
+								<ul>
+								  <li>Operated at ~400 psi for dramatic visuals</li>
+								  <li>1 gallon/minute purified output</li>
+								  <li>3D-printed TPU mesh for membrane support</li>
+								</ul>
+								<p><a class="cta" href="#" target="_blank" rel="noopener">Details</a></p>
 							  </div>
+						  
 							</div>
-							
-							<!-- Add more work items as needed -->
-							
-							<p>For more information about my projects and designs, please <a href="#contact">contact me</a>.</p>
-						</article>
+						  </article>
 
 						<!-- About -->
 							<article id="about">
@@ -158,15 +152,15 @@
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
+											<input type="text" name="name" id="name" required/>
 										</div>
 										<div class="field half">
 											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
+											<input type="text" name="email" id="email" required />
 										</div>
 										<div class="field">
 											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4"></textarea>
+											<textarea name="message" id="message" rows="4" required></textarea>
 										</div>
 									</div>
 									<ul class="actions">
