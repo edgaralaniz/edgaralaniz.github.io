@@ -71,8 +71,15 @@
 
 					/* Hide on very small screens if you want extra space */
 					@media (max-width: 480px) {
-					.logo-avatar { display: none; }
-				}
+  .logo-avatar {
+    display: block;        /* show it */
+    top: 0.6rem;           /* nudge into the corner */
+    left: 0.6rem;
+    width: 44px;           /* smaller on phones */
+    height: 44px;
+    opacity: 0.85;
+  }
+}
 				  .headshot {
   					width: 180px;
 					height: 180px;
