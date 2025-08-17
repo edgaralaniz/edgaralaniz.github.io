@@ -1152,12 +1152,18 @@ input, select, textarea {
 		#bg:after {
 			transform: scale(1.05);
 			transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
-			background: radial-gradient(
-			  1200px 800px at 30% 20%,
-			  #2a3242 0%,
-			  #151a22 60%,
-			  #0c1016 100%
-			);
+			background:
+    /* main glow (top-leftish) */
+    radial-gradient(1200px 800px at 35% 25%,
+      #2a3242 0%,
+      #1a2028 60%,
+      #121821 100%
+    ),
+    /* subtle lift on the right side */
+    radial-gradient(700px 500px at 85% 50%,
+      rgba(80,100,130,0.22) 0%,
+      rgba(12,16,22,0) 60%
+    );
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
@@ -1171,8 +1177,8 @@ input, select, textarea {
 			transition: opacity 0.325s ease-in-out, visibility 0.325s;
 			background: linear-gradient(
 				to top,
-				rgba(8, 12, 18, 0.28),
-				rgba(8, 12, 18, 0.28)
+				rgba(8, 12, 18, 0.1),
+				rgba(8, 12, 18, 0.1)
 			  ),
 			  url("../../images/overlay.png");
 			background-size: auto, 256px 256px;
