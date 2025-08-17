@@ -14,15 +14,17 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
+		<div class="logo-avatar">
+			<a href="/" aria-label="Home" rel="home">
+			  <img src="images/logo.png" alt="EA Logo">
+			</a>
+		  </div>
 
 
 			<div id="wrapper">
 
 				<!-- Header -->
 				<header id="header">
-					<div class="logo-avatar">
-					  <img src="images/logo.png" alt="EA monogram logo" />
-					</div>
 					<div class="content">
 						<div class="inner">
 							<img src="images/headshot.jpg"
@@ -37,7 +39,7 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Intro</a></li>
-							<li><a href="#portfolio">Portfolio</a></li>
+							<li><a href="#portfolio">Projects</a></li>
 							<li><a href="#about">About Me</a></li>
 							<li><a href="#skills">Skills</a></li>
 							<li><a href="#contact">Contact</a></li>
@@ -47,30 +49,51 @@
 				  
 				  <style>
 				  .logo-avatar {
-					width: 100px;
-					height: 100px;
+					position: fixed;
+					top: 1.25rem;
+					left: 1.25rem;
+					width: 56px;
+					height: 56px;
 					border-radius: 50%;
 					overflow: hidden;
-					position: absolute;
-					top: 0px;
-					left: 0px;
-					z-index: 1;
-					box-shadow: 0px 0px 5px #ccc;
-				  }
-				  .logo-avatar img {
+					z-index: 1000;
+					opacity: 0.75;              /* subtle */
+					box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+					backdrop-filter: blur(0.5px); /* softens busy backgrounds */
+				}
+
+					.logo-avatar img {
 					display: block;
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
-				  }
+				}
+
+					/* Hide on very small screens if you want extra space */
+					@media (max-width: 480px) {
+					.logo-avatar { display: none; }
+				}
 				  .headshot {
   					width: 180px;
 					height: 180px;
+					border: 2px solid rgba(255, 255, 255, 0.18);
 					border-radius: 50%;
 					object-fit: cover;
 					display: block;
 					margin: 0 auto 1.25rem;
 					box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+				}
+				.logo-avatar a {
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+				.logo-avatar{
+					cursor: pointer; /* Makes it clickable */
+					transition: opacity 0.2s ease; /* Smooth hover effect */
+				}
+				.logo-avatar:hover {
+					opacity: 0.95;
 				}
 				  </style>
 
@@ -146,14 +169,13 @@
 								</form>
 								<ul class="icons">
 									<li><a href="https://www.linkedin.com/in/edgaralaniz" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://www.youtube.com/@MarkRober" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
 								</ul>
 							</article>
 
 						<!-- Elements -->
-							<article id="elements">
+							<!-- <article id="elements">
 								<h2 class="major">Elements</h2>
 
 								<section>
@@ -393,7 +415,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 									</form>
 								</section>
 
-							</article>
+							</article> -->
 
 					</div>
 
