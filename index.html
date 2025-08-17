@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<title>Edgar Alaniz</title>
+		<meta name="description" content="Portfolio of Edgar Alaniz — Engineer working on projects in electronics, mechanics, and creative builds.">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -14,20 +15,25 @@
 	</head>
 	<body class="is-preload">
 
-		<!-- Wrapper -->
+
 			<div id="wrapper">
 
 				<!-- Header -->
 				<header id="header">
 					<div class="logo-avatar">
-					  <img src="images/logo.png" alt="Your Logo">
+					  <img src="images/logo.png" alt="EA monogram logo" />
 					</div>
 					<div class="content">
-					  <div class="inner">
-						<h1>Edgar Alaniz</h1>
-						<p>Welcome to my personal website! I'm a mechanical engineer with a passion for design and innovation. Here you'll find a collection of my latest projects and designs, ranging from mechanical components and systems to 3D models and prototypes. I've also included some information about my background, skills, and interests, as well as my contact information and social media profiles. Feel free to browse around and let me know what you think!</p>
+						<div class="inner">
+							<img src="images/headshot.jpg"
+							alt="Portrait of Edgar Alaniz"
+							class="headshot"
+							width="400" height="400"
+							loading="lazy" decoding="async" />
+						  <h1>Edgar Alaniz</h1>
+						  <p>Welcome! I’m an engineer with a passion for design, prototyping, and hands-on problem solving. Here you’ll find some of my projects, skills, and ways to connect.</p>
+						</div>
 					  </div>
-					</div>
 					<nav>
 						<ul>
 							<li><a href="#intro">Intro</a></li>
@@ -57,6 +63,15 @@
 					height: 100%;
 					object-fit: cover;
 				  }
+				  .headshot {
+  					width: 180px;
+					height: 180px;
+					border-radius: 50%;
+					object-fit: cover;
+					display: block;
+					margin: 0 auto 1.25rem;
+					box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+				}
 				  </style>
 
 				<!-- Main -->
@@ -130,7 +145,7 @@
 									</ul>
 								</form>
 								<ul class="icons">
-									<li><a href="#" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+									<li><a href="https://www.linkedin.com/in/edgaralaniz" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
 									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
@@ -333,11 +348,12 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 										<div class="fields">
 											<div class="field half">
 												<label for="demo-name">Name</label>
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+												<input type="text" name="name" id="name" required />
+												<textarea name="message" id="message" rows="4" required></textarea>
 											</div>
 											<div class="field half">
 												<label for="demo-email">Email</label>
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+												<input type="email" name="email" id="email" required />
 											</div>
 											<div class="field">
 												<label for="demo-category">Category</label>
@@ -383,7 +399,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; 2023 Edgar Alaniz Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; 2023-2025 Edgar Alaniz. Theme: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
 			</div>
