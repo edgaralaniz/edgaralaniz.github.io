@@ -235,6 +235,7 @@ const ProjectManager = {
 			});
 
 			console.log(`[Portfolio] Sorted projects by live view counts, returning ${filtered.length}`);
+			console.log(`[Portfolio] Final sort order:`, filtered.map(p => `${p.project_name} (${(p.youtube_views || 0).toLocaleString()} views)`));
 			return filtered;
 		} catch (error) {
 			console.error(`[Portfolio] Error loading projects:`, error);
