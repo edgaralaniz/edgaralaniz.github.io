@@ -202,7 +202,25 @@ const ProjectManager = {
 
 			console.log(`[Portfolio] Filtered to ${filtered.length} visible projects`);
 
-			// Sort: Homepage first, then by view count descending
+			// Fetch live YouTube view counts for all projects in parallel
+			console.log(`[Portfolio] Fetching live YouTube view counts...`);
+			const fetchPromises = filtered.map(async (project) => {
+				if (project.youtube_url) {
+					const videoId = this.extractVideoId(project.youtube_url);
+					if (videoId) {
+						const videoData = await YOUTUBE_API_CONFIG.fetchVideoData(videoId);
+						if (videoData && videoData.views) {
+							project.youtube_views = videoData.views;
+							console.log(`[Portfolio] Updated ${project.project_name}: ${videoData.views.toLocaleString()} views`);
+						}
+					}
+				}
+			});
+
+			await Promise.all(fetchPromises);
+			console.log(`[Portfolio] Finished fetching live view counts`);
+
+			// Sort: Homepage first, then by view count descending (now with live counts)
 			filtered.sort((a, b) => {
 				// Homepage projects first
 				const aIsHomepage = a.visibility_recommendation === 'Homepage' ? 0 : 1;
@@ -212,11 +230,11 @@ const ProjectManager = {
 					return aIsHomepage - bIsHomepage;
 				}
 
-				// Then by view count descending
+				// Then by view count descending (using live counts)
 				return (b.youtube_views || 0) - (a.youtube_views || 0);
 			});
 
-			console.log(`[Portfolio] Sorted projects, returning ${filtered.length}`);
+			console.log(`[Portfolio] Sorted projects by live view counts, returning ${filtered.length}`);
 			return filtered;
 		} catch (error) {
 			console.error(`[Portfolio] Error loading projects:`, error);
@@ -281,21 +299,15 @@ const ProjectManager = {
 			thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 		}
 
-		// Fetch video data (title and view count)
+		// Get title and view count (view count was already updated in loadProjects with live data)
 		let title = project['project_name'] || 'Untitled Project';
 		let viewCount = project['youtube_views'] || '';
 
+		// Only fetch title from YouTube if we have a video ID
 		if (videoId) {
 			const videoData = await YOUTUBE_API_CONFIG.fetchVideoData(videoId);
-			if (videoData) {
-				if (videoData.title) {
-					title = videoData.title;
-				}
-				// Handle both number and object responses
-				const views = videoData.views || videoData;
-				if (views && typeof views === 'number') {
-					viewCount = views;
-				}
+			if (videoData && videoData.title) {
+				title = videoData.title;
 			}
 		}
 
