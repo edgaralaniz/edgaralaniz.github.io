@@ -120,15 +120,16 @@ const ProjectManager = {
 			thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 		}
 
-		// Get view count from JSON (already updated by GitHub Actions)
+		// Get view count and title from JSON (already updated by GitHub Actions)
 		let viewCount = project['youtube_views'] || '';
+		let title = project['title'] || 'Untitled';
 		const formattedViews = viewCount ? this.formatViewCount(viewCount) : 'Views unavailable';
 
 		// Build HTML
 		let html = '<div class="project-thumbnail">';
 
 		if (thumbnailUrl) {
-			html += `<img src="${thumbnailUrl}" alt="YouTube video thumbnail" loading="lazy" decoding="async">`;
+			html += `<img src="${thumbnailUrl}" alt="${escapeHtml(title)}" loading="lazy" decoding="async">`;
 		} else {
 			html += '<div style="width: 100%; height: 100%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #a0a8b0;">No image</div>';
 		}
@@ -136,6 +137,7 @@ const ProjectManager = {
 		html += '</div>';
 		html += '<div class="project-card-content">';
 		html += '<div class="project-card-header">';
+		html += `<h3 class="project-card-title">${escapeHtml(title)}</h3>`;
 		html += `<div class="project-card-meta">${escapeHtml(channel)} • ${formattedViews} views</div>`;
 		html += '</div>';
 		html += `<p class="project-card-hook">${escapeHtml(hook)}</p>`;
