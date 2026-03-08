@@ -330,10 +330,6 @@ const ProjectManager = {
 		html += `<p class="project-card-detail"><strong>Tools:</strong> ${escapeHtml(tools)}</p>`;
 	}
 
-	if (outcomes) {
-		html += `<p class="project-card-detail"><strong>Outcomes:</strong> ${escapeHtml(outcomes)}</p>`;
-	}
-
 	// Add link if available
 		if (videoUrl) {
 			html += `<a href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener" style="margin-top: auto; padding-top: 1rem; display: inline-block; color: #ffffff; border-bottom: 1px dotted rgba(255,255,255,0.5); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1rem;">Watch on YouTube</a>`;
