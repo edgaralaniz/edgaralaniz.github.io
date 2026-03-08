@@ -1,0 +1,7 @@
+# Private project data - never commit to public repo
+portfolio_projects.json
+
+# API keys and secrets
+.env
+.env.local
+*.key

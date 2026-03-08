@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	console.log('[Portfolio] Starting renderProjects...');
 	ProjectManager.renderProjects(
 		'#projects-grid',
-		'portfolio_projects.json'
+		'portfolio_projects_public.json'
 	);
 
 	// Smooth scroll navigation
