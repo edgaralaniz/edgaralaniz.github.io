@@ -38,7 +38,7 @@ const YOUTUBE_API_CONFIG = {
 		localStorage.setItem(this.cacheKey, JSON.stringify(cache));
 	},
 
-	// Fetch video data from YouTube API (views and metadata)
+	// Fetch video data from YouTube API (views, metadata, and publish date)
 	fetchVideoData: async function(videoId) {
 		// Check cache first
 		const cached = this.getCachedViews(videoId);
@@ -67,7 +67,8 @@ const YOUTUBE_API_CONFIG = {
 				const item = data.items[0];
 				const videoData = {
 					views: parseInt(item.statistics.viewCount || 0),
-					title: item.snippet.title || ''
+					title: item.snippet.title || '',
+					publishedAt: item.snippet.publishedAt || ''
 				};
 				this.setCachedViews(videoId, videoData);
 				return videoData;
@@ -202,31 +203,38 @@ const ProjectManager = {
 
 			console.log(`[Portfolio] Filtered to ${filtered.length} visible projects`);
 
-			// Fetch live YouTube view counts for all projects in parallel
-			console.log(`[Portfolio] Fetching live YouTube view counts...`);
+			// Fetch live YouTube metadata for all projects in parallel
+			console.log(`[Portfolio] Fetching live YouTube metadata...`);
 			const fetchPromises = filtered.map(async (project) => {
 				if (project.youtube_url) {
 					const videoId = this.extractVideoId(project.youtube_url);
 					if (videoId) {
 						const videoData = await YOUTUBE_API_CONFIG.fetchVideoData(videoId);
-						if (videoData && videoData.views) {
-							project.youtube_views = videoData.views;
-							console.log(`[Portfolio] Updated ${project.project_name}: ${videoData.views.toLocaleString()} views`);
+						if (videoData) {
+							if (videoData.views) {
+								project.youtube_views = videoData.views;
+							}
+							if (videoData.publishedAt) {
+								project.publishedAt = videoData.publishedAt;
+								console.log(`[Portfolio] Updated ${project.project_name}: ${videoData.publishedAt.split('T')[0]} (${videoData.views.toLocaleString()} views)`);
+							}
 						}
 					}
 				}
 			});
 
 			await Promise.all(fetchPromises);
-			console.log(`[Portfolio] Finished fetching live view counts`);
+			console.log(`[Portfolio] Finished fetching YouTube metadata`);
 
-			// Sort by view count descending (using live counts)
+			// Sort by publish date descending (newest first)
 			filtered.sort((a, b) => {
-				return (b.youtube_views || 0) - (a.youtube_views || 0);
+				const dateA = new Date(a.publishedAt || 0);
+				const dateB = new Date(b.publishedAt || 0);
+				return dateB - dateA;
 			});
 
-			console.log(`[Portfolio] Sorted projects by live view counts, returning ${filtered.length}`);
-			console.log(`[Portfolio] Final sort order:`, filtered.map(p => `${p.project_name} (${(p.youtube_views || 0).toLocaleString()} views)`));
+			console.log(`[Portfolio] Sorted projects by publish date (newest first), returning ${filtered.length}`);
+			console.log(`[Portfolio] Final sort order:`, filtered.map(p => `${p.project_name} (${(p.publishedAt || 'unknown').split('T')[0]})`));
 			return filtered;
 		} catch (error) {
 			console.error(`[Portfolio] Error loading projects:`, error);
