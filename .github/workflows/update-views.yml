@@ -110,6 +110,8 @@ jobs:
           SCRIPT
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -120,5 +122,5 @@ jobs:
           else
             git add portfolio_projects_public.json
             git commit -m "Update YouTube view counts [automated]"
-            git push
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
           fi
