@@ -220,17 +220,8 @@ const ProjectManager = {
 			await Promise.all(fetchPromises);
 			console.log(`[Portfolio] Finished fetching live view counts`);
 
-			// Sort: Homepage first, then by view count descending (now with live counts)
+			// Sort by view count descending (using live counts)
 			filtered.sort((a, b) => {
-				// Homepage projects first
-				const aIsHomepage = a.visibility_recommendation === 'Homepage' ? 0 : 1;
-				const bIsHomepage = b.visibility_recommendation === 'Homepage' ? 0 : 1;
-
-				if (aIsHomepage !== bIsHomepage) {
-					return aIsHomepage - bIsHomepage;
-				}
-
-				// Then by view count descending (using live counts)
 				return (b.youtube_views || 0) - (a.youtube_views || 0);
 			});
 
