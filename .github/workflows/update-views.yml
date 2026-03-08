@@ -83,10 +83,15 @@ jobs:
                   const item = data.items[0];
                   const viewCount = parseInt(item.statistics.viewCount || 0);
                   project.youtube_views = viewCount;
-                  if (item.snippet && item.snippet.title) {
-                    project.title = item.snippet.title;
+                  if (item.snippet) {
+                    if (item.snippet.title) {
+                      project.title = item.snippet.title;
+                    }
+                    if (item.snippet.publishedAt) {
+                      project.publishedAt = item.snippet.publishedAt;
+                    }
                   }
-                  console.log(`Updated: ${project.title || project.my_role.substring(0, 50)}... - ${viewCount.toLocaleString()} views`);
+                  console.log(`Updated: ${project.title || project.my_role.substring(0, 50)}... - ${viewCount.toLocaleString()} views - Published: ${project.publishedAt}`);
                   updated++;
                 }
               } catch (error) {

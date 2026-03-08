@@ -59,6 +59,15 @@ const ProjectManager = {
 			});
 
 			console.log(`[Portfolio] Filtered to ${filtered.length} visible projects`);
+
+			// Sort by publish date descending (newest first)
+			filtered.sort((a, b) => {
+				const dateA = new Date(a.publishedAt || 0);
+				const dateB = new Date(b.publishedAt || 0);
+				return dateB - dateA;
+			});
+
+			console.log(`[Portfolio] Sorted by publish date (newest first)`);
 			return filtered;
 		} catch (error) {
 			console.error(`[Portfolio] Error loading projects:`, error);
@@ -169,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	console.log('[Portfolio] Starting renderProjects...');
 	ProjectManager.renderProjects(
 		'#projects-grid',
-		'portfolio_projects_public.json'
+		'portfolio_projects_public.json?v=3'
 	);
 
 	// Smooth scroll navigation
